@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" mode="md">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{'select_language' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+<ion-content class="bg_color" fullscreen>
+    <ion-list lines="none">
+        <ion-radio-group>
+            <ion-item class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <h3>English</h3>
+                    <ion-radio class="end" value="en"></ion-radio>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <h3>Arabic</h3>
+                    <ion-radio class="end" value="ar"></ion-radio>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <h3>Spanish</h3>
+                    <ion-radio class="end" value="es"></ion-radio>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <h3>French</h3>
+                    <ion-radio class="end" value="fr"></ion-radio>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <h3>Indonesian</h3>
+                    <ion-radio class="end" value="id"></ion-radio>
+                </div>
+            </ion-item>
+            <ion-item class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <h3>Portuguese</h3>
+                    <ion-radio class="end" value="pt"></ion-radio>
+                </div>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+	<ion-button size="large" shape="full" class="btn"> {{'save' | translate}} </ion-button>
+</ion-footer>

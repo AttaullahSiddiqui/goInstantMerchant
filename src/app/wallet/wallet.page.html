@@ -1,0 +1,66 @@
+<ion-header class="bg_transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>{{'wallet' | translate}}</ion-title>
+	</ion-toolbar>
+	<div class="banner">
+		<h2>{{'available_balance' | translate}}</h2>
+		<h1>{{currency_icon}} <ion-spinner name="dots" *ngIf="isLoading"></ion-spinner> <span
+				*ngIf="!isLoading">{{balance}}</span>
+		</h1>
+	</div>
+</ion-header>
+
+
+<ion-content class="bg_color" fullscreen>
+	<ion-button size="large" shape="block" class="btn" (click)="navBankTransfer()">{{'send_to_bank' | translate}}
+	</ion-button>
+	<ion-list lines="none">
+		<h2 *ngIf="transactions && transactions.length">{{'recent' | translate}}</h2>
+		<ion-item *ngFor="let transaction of transactions" class="animate__animated animate__fadeInRight">
+			<ion-row *ngIf="transaction.meta && transaction.meta.source_payment_type">
+				<ion-col size="6">
+					<h3>
+						<strong *ngIf="transaction.type == 'payout'">{{'sent_to_bank' | translate}}</strong>
+						<strong *ngIf="transaction.type != 'payout'">{{transaction.meta.description}}</strong>
+					</h3>
+					<p>{{transaction.created_at}}</p>
+				</ion-col>
+				<ion-col size="3" class="ion-text-end">
+					<h3>{{currency_icon}}{{transaction.meta.source_amount}}</h3>
+					<p>{{transaction.meta.source_payment_type}}</p>
+				</ion-col>
+				<ion-col size="3" class="ion-text-end">
+					<h3>{{currency_icon}}{{transaction.amount}}</h3>
+					<p *ngIf="transaction.type == 'payout' || transaction.type == 'withdraw'">
+						{{'payout' | translate}}
+					</p>
+					<p *ngIf="!(transaction.type == 'payout' || transaction.type == 'withdraw')">
+						{{'earning' | translate}}
+					</p>
+				</ion-col>
+			</ion-row>
+			<ion-row *ngIf="!(transaction.meta && transaction.meta.source_payment_type)">
+				<ion-col size="6">
+					<h3>
+						<strong *ngIf="transaction.type == 'payout'">{{'sent_to_bank' | translate}}</strong>
+						<strong *ngIf="transaction.type != 'payout'">{{transaction.meta.description}}</strong>
+					</h3>
+					<p>{{transaction.created_at}}</p>
+				</ion-col>
+
+				<ion-col size="6" class="ion-text-end">
+					<h3>{{currency_icon}}{{transaction.amount}}</h3>
+					<p *ngIf="transaction.type == 'payout' || transaction.type == 'withdraw'">
+						{{'payout' | translate}}
+					</p>
+					<p *ngIf="!(transaction.type == 'payout' || transaction.type == 'withdraw')">
+						{{'earning' | translate}}
+					</p>
+				</ion-col>
+			</ion-row>
+		</ion-item>
+	</ion-list>
+</ion-content>

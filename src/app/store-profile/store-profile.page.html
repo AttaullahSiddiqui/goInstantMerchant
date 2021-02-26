@@ -1,0 +1,138 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" mode="md">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <span class="d-flex">
+                <span class="center">
+                    {{'restaurant_profile' | translate}}
+                </span>
+                <ion-icon *ngIf="fresh_profile" class="zmdi zmdi-sign-in end" (click)="exitApp()"></ion-icon>
+            </span>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="bg_color" fullscreen>
+    <ion-list lines="none">
+        <ion-item class="feature_image">
+            <div class="item_inner">
+                <!-- <h2> {{'feature_image' | translate}}</h2> -->
+                <div class="d-flex" style="align-items: flex-start;">
+                    <div *ngIf="profile && profile.image_urls && profile.image_urls.length" class="img_box center_img">
+                        <img [src]="profile.image_urls[0]" class="crop_img">
+                    </div>
+                    <div *ngIf="!profile || !profile.image_urls || !profile.image_urls.length"
+                        class="img_box center_img">
+                        <img src="assets/images/plc_seller_profile.png" class="crop_img">
+                    </div>
+                    <h3 class="d-flex" (click)="pickImage()">
+                        <ion-icon class="zmdi zmdi-camera ion-text-start"></ion-icon>
+                        {{'upload_photo' | translate}}
+                    </h3>
+                </div>
+            </div>
+        </ion-item>
+
+        <div class="form">
+            <h2>{{'restaurant_info' | translate}}</h2>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"restaurant_name" | translate}}</ion-label>
+                        <ion-input mode="md" type="text" [(ngModel)]="profile.name"></ion-input>
+                    </div>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"store_category" | translate}}</ion-label>
+                        <div class="d-flex" style="align-items: flex-end;">
+                            <ion-select mode="md" multiple="true" [(ngModel)]="categoriesSelectedStrings"
+                                (ionChange)="onCategoriesChange()" [value]="categoriesSelectedStrings"
+                                [selectedText]="categoriesSelectedStringsFormatted"
+                                cancelText="{{'cancel' | translate}}" okText="{{'okay' | translate}}">
+                                <ion-select-option *ngFor="let cat of categoryStrings" [value]="cat">
+                                    {{cat}}
+                                </ion-select-option>
+                            </ion-select>
+
+                            <ion-icon class="zmdi zmdi-chevron-down ion-text-end end"></ion-icon>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"phone_number" | translate}}</ion-label>
+                        <ion-input mode="md" type="text" readonly [(ngModel)]="profile.user.mobile_number"></ion-input>
+                    </div>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"email_address" | translate}}</ion-label>
+                        <ion-input mode="md" type="text" readonly [(ngModel)]="profile.user.email">
+                        </ion-input>
+                    </div>
+                </div>
+            </ion-item>
+        </div>
+
+        <ion-item lines="none" class="address" (click)="navAddAddress()">
+            <div class="item_inner">
+                <h2>{{'address' | translate}}</h2>
+                <p *ngIf="profile.address && profile.address.length" class="d-flex">
+                    <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
+                    {{profile.address}}
+                </p>
+                <p *ngIf="!profile.address || !profile.address.length" class="d-flex">
+                    <ion-icon class="zmdi zmdi-pin ion-text-start"></ion-icon>
+                    {{"pick_location" | translate}}
+                </p>
+            </div>
+        </ion-item>
+
+        <div class="form store_timings">
+            <h2>{{'store_timings' | translate}}</h2>
+            <ion-row>
+                <ion-col size="6">
+                    <ion-item lines="none">
+                        <div class="item_inner d-flex">
+                            <div class="input_box">
+                                <ion-label mode="md" position="stacked">{{"opening_time" | translate}}</ion-label>
+                                <ion-datetime mode="ios" displayFormat="h:mm a" [(ngModel)]="profile.meta.opening_time">
+                                </ion-datetime>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-col>
+
+                <ion-col size="6">
+                    <ion-item lines="none">
+                        <div class="item_inner d-flex">
+                            <div class="input_box">
+                                <ion-label mode="md" position="stacked">{{"closing_time" | translate}}</ion-label>
+                                <ion-datetime mode="ios" displayFormat="h:mm a" [(ngModel)]="profile.meta.closing_time">
+                                </ion-datetime>
+                            </div>
+                        </div>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-list>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button size="large" expand="full" class="btn" (click)="update()">{{'update_info' | translate}}</ion-button>
+</ion-footer>

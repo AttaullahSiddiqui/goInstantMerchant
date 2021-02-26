@@ -1,0 +1,33 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{'verification' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+    <div id="recaptcha-container"></div>
+    <div class="form">
+        <ion-list lines="none">
+            <p>{{'verification_text' | translate}} {{phoneNumberFull}} </p>
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <!--                    <div class="icon_box ion-text-start"><img src="assets/images/ic_profile.png"></div>-->
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"enter_verification_code" | translate}}</ion-label>
+                        <ion-input mode="md" type="number" [(ngModel)]="otp" placeholder=""></ion-input>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+<ion-footer class="ion-no-border">
+    <h3 *ngIf="showOTPTimmer" class="d-flex">{{showOTPTimmer}} &nbsp;{{'min' | translate}} <span class="end"
+            (click)="resendOTP()"> {{'resend' | translate}}</span></h3>
+    <ion-button size="large" expand="full" class="btn" (click)="verify()">{{'continue' | translate}}</ion-button>
+</ion-footer>

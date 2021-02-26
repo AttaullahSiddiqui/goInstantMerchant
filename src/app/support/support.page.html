@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{'support' | translate}}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <div class="banner">
+        <div class="logo ion-text-center">
+            <img src="assets/images/Logo.png" class="light_theme_logo">
+            <img src="assets/images/logo_store_dark.png" class="dark_theme_logo">
+        </div>
+    </div>
+
+    <div class="form">
+        <p [innerHTML]="'support_message' | translate"></p>
+        <ion-list lines="none">
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <div class="icon_box ion-text-start"><img src="assets/images/ic_phone.png"></div>
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"phone_number" | translate}}</ion-label>
+                        <ion-input mode="md" type="text" placeholder="" [(ngModel)]="supportRequest.mobile_number"></ion-input>
+                    </div>
+                </div>
+            </ion-item>
+
+            <ion-item lines="none">
+                <div class="item_inner d-flex">
+                    <div class="icon_box ion-text-start"><img src="assets/images/ic_mail.png"></div>
+                    <div class="input_box">
+                        <ion-label mode="md" position="stacked">{{"your_message" | translate}}</ion-label>
+                        <ion-textarea rows="4" mode="md" type="text" [(ngModel)]="supportRequest.message"
+                            placeholder="{{'enter_your_message_heare' | translate}}"></ion-textarea>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button size="large" expand="full" class="btn" (click)="submit()">{{'submit' | translate}}</ion-button>
+</ion-footer>

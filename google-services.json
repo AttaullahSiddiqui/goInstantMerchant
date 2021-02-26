@@ -1,0 +1,151 @@
+{
+  "project_info": {
+    "project_number": "630267082657",
+    "firebase_url": "https://goinstant-84099-default-rtdb.firebaseio.com",
+    "project_id": "goinstant-84099",
+    "storage_bucket": "goinstant-84099.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630267082657:android:f8890bd81f5e0b48ddfde0",
+        "android_client_info": {
+          "package_name": "com.apps.goinstant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630267082657-90v03f2si5scrgsq8ovb05f89i6sgr3o.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apps.goinstant",
+            "certificate_hash": "6dfe16de145d1ad23cff2746403f35acd5944f89"
+          }
+        },
+        {
+          "client_id": "630267082657-alq12kp04i3qc2iabu2oona7vhm4vc07.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.apps.goinstant",
+            "certificate_hash": "10b3c1e77c64a8b179e63b21cb9cfd79b71bcdda"
+          }
+        },
+        {
+          "client_id": "630267082657-d0ffskl8tjag7nl9m9kqb72c5kbjgocs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiBbUuEtmWCGdCNJNYNQoUTtOb6mS62cI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630267082657-03tkmtsb5sevvkuh5sq3gl2ikvk3afbu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630267082657-sjg4be69hv632dthforenpjrv0k8o6mp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.apps.goinstant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630267082657:android:d2bdbba78fa8dbdfddfde0",
+        "android_client_info": {
+          "package_name": "com.goinstant.driver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630267082657-2po465qtcp62rbsnu9retld5kgl6rjun.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goinstant.driver",
+            "certificate_hash": "10b3c1e77c64a8b179e63b21cb9cfd79b71bcdda"
+          }
+        },
+        {
+          "client_id": "630267082657-d0ffskl8tjag7nl9m9kqb72c5kbjgocs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiBbUuEtmWCGdCNJNYNQoUTtOb6mS62cI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630267082657-03tkmtsb5sevvkuh5sq3gl2ikvk3afbu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630267082657-sjg4be69hv632dthforenpjrv0k8o6mp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.apps.goinstant"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:630267082657:android:5483f9dd4ab1adfcddfde0",
+        "android_client_info": {
+          "package_name": "com.goinstant.restro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "630267082657-jc58t404m078eavfc5g6gdbv9g2a3eqr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.goinstant.restro",
+            "certificate_hash": "10b3c1e77c64a8b179e63b21cb9cfd79b71bcdda"
+          }
+        },
+        {
+          "client_id": "630267082657-d0ffskl8tjag7nl9m9kqb72c5kbjgocs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiBbUuEtmWCGdCNJNYNQoUTtOb6mS62cI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "630267082657-03tkmtsb5sevvkuh5sq3gl2ikvk3afbu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "630267082657-sjg4be69hv632dthforenpjrv0k8o6mp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.apps.goinstant"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

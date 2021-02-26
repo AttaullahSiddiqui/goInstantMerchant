@@ -1,0 +1,100 @@
+<ion-header class="bg_transparent">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            <div class="title_inner d-flex">
+                {{'insight' | translate}}
+                <div class="form end">
+                    <ion-item lines="none">
+                        <div class="item_inner d-flex">
+                            <ion-select class="end" interface="popover" [(ngModel)]="duration"
+                                (ionChange)="loadInsight()">
+                                <ion-select-option value="today">{{'today' | translate}}</ion-select-option>
+                                <ion-select-option value="week">{{'this_week' | translate}}</ion-select-option>
+                                <ion-select-option value="month">{{'this_month' | translate}} </ion-select-option>
+                                <ion-select-option value="year">{{'this_year' | translate}}</ion-select-option>
+                            </ion-select>
+
+                            <ion-icon class="zmdi zmdi-caret-down ion-text-end"></ion-icon>
+                        </div>
+                    </ion-item>
+                </div>
+            </div>
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+
+    <ion-card class="tab">
+        <ion-row>
+            <ion-col size="6" class="ion-text-center">
+                <h2>{{insightsOrder.orders_count}}</h2>
+                <p>{{'orders' | translate}}</p>
+            </ion-col>
+            <!-- <ion-col size="6" class="ion-text-center">
+                <h2>{{currency_icon}}{{insightsOrder.earnings}}</h2>
+                <p>{{'items_sold' | translate}}</p>
+            </ion-col> -->
+            <ion-col size="6" class="ion-text-center">
+                <h2>{{currency_icon}}{{insightsOrder.earnings}}</h2>
+                <p>{{'items_sold' | translate}}</p>
+            </ion-col>
+        </ion-row>
+    </ion-card>
+
+    <ion-card>
+        <div class="card_containt">
+            <h1>{{'earnings' | translate}}</h1>
+            <div class="graph_container d-flex">
+                <div class="text_container">
+                    <p *ngFor="let pr of priceRangeEarning" class="ion-text-end"><span>{{pr}}</span></p>
+                </div>
+                <div class="graph end">
+                    <div *ngFor="let cd of chartDataParsedEarning" class="bar_box">
+                        <h4>{{cd.date}}</h4>
+                        <div class="bar" [style.height]="cd.percent+'%'">
+                            <h5>{{cd.price}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="ion-text-center" (click)="navTransactions()">{{'view_all_transactions' | translate}}</h3>
+        </div>
+    </ion-card>
+
+
+    <ion-list *ngFor="let catPros of productTypesMap" lines="none">
+        <h2>
+            {{catPros.productType.title | translate}}
+            <!-- <span>
+                {{'total' | translate}}
+                112
+                {{'items_sales' | translate}}
+            </span> -->
+        </h2>
+        <div class="empty-view" *ngIf="haveNothingToShow()">
+            <div style="text-align:center">
+                <img src="assets/images/plc_no_item.png" alt="no offers" />
+                <span style="color:#9E9E9E; font-weight:bold;">
+                    {{'empty_nothing' | translate}}
+                </span>
+            </div>
+        </div>
+        <ion-item *ngFor="let product of catPros.products" class="animate__animated animate__fadeInRight">
+            <div class="item_inner d-flex">
+                <div class="img_box">
+                    <img [src]="product.image_urls[0]">
+                </div>
+                <div class="text_box">
+                    <h3>{{product.title}}</h3>
+                    <h4
+                        *ngIf="product.vendor_products && product.vendor_products[0] && product.vendor_products[0].sells_count">
+                        {{product.vendor_products[0].sells_count}} {{'sales' | translate}}</h4>
+                </div>
+            </div>
+        </ion-item>
+    </ion-list>
+</ion-content>

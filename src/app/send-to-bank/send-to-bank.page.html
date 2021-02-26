@@ -1,0 +1,75 @@
+<ion-header class="bg_transparent">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{'send_to_bank' | translate}}</ion-title>
+    </ion-toolbar>
+    <div class="banner">
+        <h2>{{'available_balance' | translate}}</h2>
+        <h1>{{currency_icon}}{{balance}}</h1>
+    </div>
+</ion-header>
+
+
+<ion-content class="bg_color">
+    <div class="form">
+        <ion-list lines="none">
+            <ion-card>
+                <h2>{{'bank_info' | translate}}</h2>
+
+                <ion-item lines="none">
+                    <div class="item_inner d-flex">
+                        <div class="input_box">
+                            <ion-label mode="md" position="stacked">{{"account_holder_name" | translate}}</ion-label>
+                            <ion-input mode="md" type="name" placeholder=""  [(ngModel)]="payourRequest.bank_account_name"></ion-input>
+                        </div>
+                    </div>
+                </ion-item>
+
+
+                <ion-item lines="none">
+                    <div class="item_inner d-flex">
+                        <div class="input_box">
+                            <ion-label mode="md" position="stacked">{{"bank_name" | translate}}</ion-label>
+                            <ion-input mode="md" type="name" placeholder=""  [(ngModel)]="payourRequest.bank_name"></ion-input>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <div class="item_inner d-flex">
+                        <div class="input_box">
+                            <ion-label mode="md" position="stacked">{{"branch_code" | translate}}</ion-label>
+                            <ion-input mode="md" type="name" placeholder=""  [(ngModel)]="payourRequest.bank_code"></ion-input>
+                        </div>
+                    </div>
+                </ion-item>
+
+                <ion-item lines="none">
+                    <div class="item_inner d-flex">
+                        <div class="input_box">
+                            <ion-label mode="md" position="stacked">{{"account_number" | translate}}</ion-label>
+                            <ion-input mode="md" type="name" placeholder=""  [(ngModel)]="payourRequest.bank_account_number"></ion-input>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-card>
+
+            <ion-card>
+                <ion-item lines="none">
+                    <div class="item_inner d-flex">
+                        <div class="input_box">
+                            <ion-label mode="md" position="stacked">{{"enter_amount_to_transfer" | translate}}</ion-label>
+                            <ion-input mode="md" type="name" placeholder=""  [(ngModel)]="payourRequest.amount"></ion-input>
+                        </div>
+                    </div>
+                </ion-item>
+            </ion-card>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <ion-button size="large" expand="full" class="btn" (click)="submit()">{{'send_to_bank' | translate}}</ion-button>
+</ion-footer>

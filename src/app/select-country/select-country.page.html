@@ -1,0 +1,23 @@
+<ion-content fullscreen (click)="dismiss()">
+
+</ion-content>
+<ion-footer class="ion-no-border">
+    <ion-list lines="none">
+        <div class="list_header d-flex">
+            <div class="text_box">
+                <h2>{{'select_country' | translate}}</h2>
+            </div>
+            <ion-button size="large" class="btn end" (click)="navLogin()">
+                {{'continue' | translate}}
+            </ion-button>
+        </div>
+        <ion-radio-group value="{{countryCodeSelected}}" [(ngModel)]="countryCodeSelected">
+            <ion-item *ngFor="let country of countries">
+                <div class="item_inner d-flex">
+                    <ion-radio slot="start" [value]="country.callingCodes[0]"></ion-radio>
+                    <h2 class="d-flex">{{country.name}} <span class="end">+{{country.callingCodes[0]}}</span></h2>
+                </div>
+            </ion-item>
+        </ion-radio-group>
+    </ion-list>
+</ion-footer>

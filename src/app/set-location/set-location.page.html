@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>
+            {{'set_store_address' | translate}}
+        </ion-title>
+    </ion-toolbar>
+    <div class="search_box d-flex">
+        <ion-icon class="zmdi zmdi-search ion-text-start"></ion-icon>
+        <ion-searchbar class="ion-no-padding" searchIcon="hide" placeholder="{{'search_lcation' | translate}}"
+        [(ngModel)]="query" (ionInput)="searchPlace()"></ion-searchbar>
+        <ion-icon class="zmdi zmdi-gps-dot ion-text-end" (click)="detect()"></ion-icon>
+    </div>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+    <div class="saved_address" *ngIf="places && places.length">
+		<div *ngFor="let place of places" class="address_box d-flex" (click)="selectPlace(place)">
+			<!-- <img src="assets/imgs/ic_home.png"> -->
+			<div class="text_box">
+				<!-- <h3>Home</h3> -->
+				<p>{{place.description}}</p>
+			</div>
+		</div>
+	</div>
+	<div #map id="map" class="map">
+		<!-- <ion-spinner></ion-spinner> -->
+	</div>
+	<div #pleaseConnect id="please-connect">
+		<!-- <p>{{'loading' | translate}}</p> -->
+	</div>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+    <div *ngIf="location" class="footer_content">
+        <div class="current_location">
+            <ion-icon class="zmdi zmdi-gps-dot"></ion-icon>
+        </div>
+        <div class="address">
+            <h2 class="d-flex">
+                <span class="map_pin"></span>
+                {{location.formatted_address}}
+            </h2>
+        </div>
+    </div> 
+    <ion-button size="large" expand="full" class="btn" (click)="save()">{{'continue' | translate}}</ion-button>
+</ion-footer>

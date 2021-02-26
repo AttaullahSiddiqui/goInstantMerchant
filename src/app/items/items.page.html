@@ -1,0 +1,64 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>
+            <div class="title_inner d-flex">
+                <span>{{'my_products' | translate}}</span>
+                <!-- <ion-icon class="zmdi zmdi-search end ion-text-end"></ion-icon> -->
+            </div>
+        </ion-title>
+    </ion-toolbar>
+
+    <ion-segment mode="ios" [(ngModel)]="tabIndex" scrollable>
+        <ion-segment-button *ngFor="let cmi of categoriesMenuItems;let i=index" [value]="i" mode="ios"
+            (click)="segmentChanged(i)">
+            <ion-label>{{cmi.category.title}}</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+
+</ion-header>
+
+<ion-content>
+    <div class="tab_content">
+        <div class="empty-view" *ngIf="!isLoading && (!menuItemsToShow || !menuItemsToShow.length)">
+            <div style="text-align:center">
+                <img src="assets/images/plc_no_item.png" alt="no offers" />
+                <span style="color:#9E9E9E; font-weight:bold;">
+                    {{'empty_results' | translate}}
+                </span>
+            </div>
+        </div>
+        <ion-list lines="none">
+            <ion-item *ngFor="let item of menuItemsToShow" class="animate__animated animate__fadeInRight">
+                <div class="item_inner d-flex">
+                    <div class="img_box" (click)="navItemDetail(item)">
+                        <img [src]="item.image_urls[0]">
+                    </div>
+                    <div class="text_box">
+                        <h3 (click)="navItemDetail(item)">{{item.title}}</h3>
+                        <h4 (click)="navItemDetail(item)"><img src="assets/images/ic_veg.png">&nbsp;&nbsp;
+                            {{item.priceToShow}}</h4>
+                        <div class="buttons d-flex">
+                            <div class="toggle_box end" [ngClass]="item.stock_quantity_status ? 'in_stock' : ''">
+                                <span *ngIf="item.stock_quantity_status">{{'in_stock' | translate}}</span>
+                                <span
+                                    *ngIf="!item.stock_quantity_status">{{'out_of_stock' | translate}}</span>&nbsp;&nbsp;
+                                <ion-toggle [(ngModel)]="item.stock_quantity_status" mode="ios"
+                                    (click)="changeProQuantity(item)"></ion-toggle>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll (ionInfinite)="doInfiniteProducts($event)">
+			<ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'loading' | translate}}">
+			</ion-infinite-scroll-content>
+		</ion-infinite-scroll>
+    </div>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button (click)="navItemDetail(null)">
+            <span>+</span>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

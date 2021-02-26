@@ -1,0 +1,110 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+        </ion-buttons>
+        <ion-title>{{'my_orders' | translate}}</ion-title>
+    </ion-toolbar>
+    <ion-segment mode="ios" [(ngModel)]="showOrder" (ionChange)="selectTab($event)">
+        <ion-segment-button mode="ios" value="active" (ionSelect)="selectTab($event)">
+            <ion-label>{{'new_orders' | translate}}</ion-label>
+        </ion-segment-button>
+        <ion-segment-button mode="ios" value="past" (ionSelect)="selectTab($event)">
+            <ion-label>{{'past_orders' | translate}}</ion-label>
+        </ion-segment-button>
+    </ion-segment>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>
+    <div class="tab_content" [ngSwitch]="showOrder">
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+            <ion-refresher-content pullingIcon="chevron-down-circle-outline"
+                pullingText="{{'pull_refresh' | translate}}" refreshingSpinner="circles"
+                refreshingText="{{'refreshing' | translate}}">
+            </ion-refresher-content>
+        </ion-refresher>
+        <div class="empty-view" *ngIf="!isLoading && (!orders || !orders.length)">
+            <div style="text-align:center">
+                <img src="assets/images/plc_no_item.png" alt="no offers" />
+                <span style="color:#9E9E9E; font-weight:bold;">
+                    {{'empty_orders' | translate}}
+                </span>
+            </div>
+        </div>
+        <ion-list lines="none" *ngSwitchCase="'active'">
+        <ion-item *ngFor="let order of orders" (click)="navOrderInfo(order)"
+        [ngClass]="order.status == 'pending'?'pending':'accepted'"
+        class="animate__animated animate__fadeInRight">
+                <div class="item_inner">
+                    <div class="item_info d-flex">
+                        <div class="item_details">
+                            <h3 class="d-flex">
+                                {{order.user.name}}
+                                <span class="end order_status">
+                                    {{('order_status_'+order.status) | translate}}
+                                </span>
+                            </h3>
+                            <h4 class="d-flex">{{"order_id" | translate}}{{order.id}} | {{order.created_at}}
+                                <span *ngIf="order.payment && order.payment.payment_method"
+                                    class="end">{{order.total_toshow}} |
+                                    {{order.payment.payment_method.title}}</span>
+                                <span *ngIf="!order.payment && order.payment.payment_method"
+                                    class="end">{{order.total_toshow}} |
+                                    COD</span></h4>
+                        </div>
+                    </div>
+                    <div class="items">
+                        <!-- <h6 >Veg Sandwich x1 <span>(Extra Cheese)</span></h6> -->
+                        <h6 *ngFor="let product of order.products">{{product?.vendor_product.product.title}} &nbsp;
+                            x{{product.quantity}}</h6>
+                        <!-- <h6>Watermelon x1 </h6> -->
+                    </div>
+                </div>
+            </ion-item>
+        </ion-list>
+
+        <ion-list lines="none" *ngSwitchCase="'past'">
+            <!-- <div class="empty-view" *ngIf="!pastOrderList || !pastOrderList.length">
+                <div style="text-align:center">
+                    <img src="assets/images/plc_no_item.png" alt="no offers" />
+                    <span style="color:#9E9E9E; font-weight:bold;">
+                        {{'empty_orders' | translate}}
+                    </span>
+                </div>
+            </div> -->
+            <ion-item *ngFor="let order of orders" (click)="navOrderInfo(order)"
+                class="delivered animate__animated animate__fadeInRight">
+                <div class="item_inner">
+                    <div class="item_info d-flex">
+                        <div class="item_details">
+                            <h3 class="d-flex">
+                                {{order.user.name}}
+                                <span class="end order_status">
+                                    {{('order_status_'+order.status) | translate}}
+                                </span>
+                            </h3>
+                            <h4 class="d-flex">{{"order_id" | translate}}{{order.id}} | {{order.created_at}}
+                                <span *ngIf="order.payment && order.payment.payment_method"
+                                    class="end">{{order.total_toshow}} |
+                                    {{order.payment.payment_method.title}}</span>
+                                <span *ngIf="!order.payment && order.payment.payment_method"
+                                    class="end">{{order.total_toshow}} |
+                                    COD</span></h4>
+                        </div>
+                    </div>
+                    <div class="items">
+                        <!-- <h6>Veg Sandwich x1 <span>(Extra Cheese)</span></h6> -->
+                        <h6 *ngFor="let product of order.products">{{product?.vendor_product.product.title}} &nbsp;
+                            x{{product.quantity}}</h6>
+                    </div>
+                </div>
+            </ion-item>
+
+
+        </ion-list>
+    </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="{{'loading' | translate}}">
+        </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>
